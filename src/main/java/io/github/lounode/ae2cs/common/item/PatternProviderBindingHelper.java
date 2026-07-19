@@ -2,12 +2,14 @@ package io.github.lounode.ae2cs.common.item;
 
 import io.github.lounode.ae2cs.common.me.logic.MirrorPatternProviderHost;
 import io.github.lounode.ae2cs.common.me.logic.ResonatingPatternProviderHost;
+import io.github.lounode.ae2cs.common.me.logic.ResonatingPatternProviderReference;
 
 import appeng.api.parts.IPartHost;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -43,9 +45,23 @@ public final class PatternProviderBindingHelper {
         return host instanceof ResonatingPatternProviderHost resonating ? resonating : null;
     }
 
-    public static @Nullable ResonatingPatternProviderHost resolveResonatingProvider(Level level, BlockPos pos, Vec3 clickLocation) {
-        PatternProviderLogicHost host = resolvePatternProvider(level, pos, clickLocation);
-        return host instanceof ResonatingPatternProviderHost resonating ? resonating : null;
+    /**
+     * 生成可在后续交互中重新定位当前点击供应器的引用。
+     */
+    public static @Nullable ResonatingPatternProviderReference referenceClickedResonatingProvider(UseOnContext context) {
+        BlockEntity blockEntity = context.getLevel().getBlockEntity(context.getClickedPos());
+        if (blockEntity instanceof ResonatingPatternProviderHost) {
+            return new ResonatingPatternProviderReference(
+                    GlobalPos.of(context.getLevel().dimension(), context.getClickedPos()), null);
+        }
+        if (blockEntity instanceof IPartHost partHost) {
+            var selected = partHost.selectPartWorld(context.getClickLocation());
+            if (selected.part instanceof ResonatingPatternProviderHost) {
+                return new ResonatingPatternProviderReference(
+                        GlobalPos.of(context.getLevel().dimension(), context.getClickedPos()), context.getClickedFace());
+            }
+        }
+        return null;
     }
 
     public static @Nullable MirrorPatternProviderHost resolveClickedMirrorProvider(UseOnContext context) {
@@ -70,25 +86,6 @@ public final class PatternProviderBindingHelper {
                 var part = partHost.getPart(side);
                 if (part instanceof MirrorPatternProviderHost mirror) {
                     hosts.add(mirror);
-                }
-            }
-        }
-
-        return hosts;
-    }
-
-    public static List<ResonatingPatternProviderHost> getResonatingProvidersAt(Level level, BlockPos pos) {
-        List<ResonatingPatternProviderHost> hosts = new ArrayList<>();
-        BlockEntity be = level.getBlockEntity(pos);
-        if (be instanceof ResonatingPatternProviderHost resonating) {
-            hosts.add(resonating);
-        }
-
-        if (be instanceof IPartHost partHost) {
-            for (Direction side : Direction.values()) {
-                var part = partHost.getPart(side);
-                if (part instanceof ResonatingPatternProviderHost resonating) {
-                    hosts.add(resonating);
                 }
             }
         }

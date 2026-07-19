@@ -14,6 +14,7 @@ import appeng.api.config.Actionable;
 import appeng.api.config.LockCraftingMode;
 import appeng.api.config.Setting;
 import appeng.api.crafting.IPatternDetails;
+import appeng.api.ids.AEComponents;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.IManagedGridNode;
 import appeng.api.networking.security.IActionSource;
@@ -226,6 +227,28 @@ public class ResonatingPatternProviderLogic extends PatternProviderLogic impleme
         return defaultSelectedInput;
     }
 
+    /**
+     * 更新一个普通处理样板默认输入槽的发配目标。
+     */
+    public void setDefaultInputTarget(int input, Optional<EncodedResonatingPattern.Target> target) {
+        if (input < 0 || input >= ResonatingProviderDefaults.DEFAULT_INPUT_SLOTS) {
+            throw new IllegalArgumentException("Invalid resonating provider input: " + input);
+        }
+
+        var targets = new ArrayList<>(defaultInputTargets);
+        targets.set(input, target);
+        defaultInputTargets = List.copyOf(targets);
+        saveChanges();
+    }
+
+    /**
+     * 更新绑定器正在编辑的默认输入槽。
+     */
+    public void setDefaultSelectedInput(int input) {
+        defaultSelectedInput = ResonatingProviderDefaults.clampSelected(input);
+        saveChanges();
+    }
+
     private void writeDefaultsToNBT(CompoundTag tag) {
         var defaults = new CompoundTag();
         defaults.putInt(TAG_SELECTED_INPUT, defaultSelectedInput);
@@ -289,7 +312,8 @@ public class ResonatingPatternProviderLogic extends PatternProviderLogic impleme
     @Override
     public boolean pushPattern(IPatternDetails patternDetails, KeyCounter[] inputHolder) {
         // 非谐振走原版
-        if (!(patternDetails instanceof ResonatingPatternDetails resonating)) {
+        RoutedPatternData routed = buildRoutedPatternData(patternDetails);
+        if (routed == null) {
             return super.pushPattern(patternDetails, inputHolder);
         }
 
@@ -316,12 +340,12 @@ public class ResonatingPatternProviderLogic extends PatternProviderLogic impleme
         record Marked(AEKey key, long amount, EncodedResonatingPattern.Target target) {}
         var marked = new ArrayList<Marked>();
 
-        var sparseInputs = resonating.getSparseInputs();
+        var sparseInputs = routed.sparseInputs();
         for (int sparseIndex = 0; sparseIndex < sparseInputs.size(); sparseIndex++) {
             var sparse = sparseInputs.get(sparseIndex);
             if (sparse == null) continue;
 
-            var optTarget = resonating.getTargetForSparseInputIndex(sparseIndex);
+            var optTarget = routed.getTargetForSparseInputIndex(sparseIndex);
             if (optTarget.isEmpty()) {
                 continue; // 无target：留给unmarked fallback
             }
@@ -435,6 +459,28 @@ public class ResonatingPatternProviderLogic extends PatternProviderLogic impleme
         }
 
         return true;
+    }
+
+    private @Nullable RoutedPatternData buildRoutedPatternData(IPatternDetails patternDetails) {
+        if (patternDetails instanceof ResonatingPatternDetails resonating) {
+            return new RoutedPatternData(resonating.getSparseInputs(), resonating.getInputTargets());
+        }
+
+        if (!ResonatingProviderDefaults.hasAnyTarget(defaultInputTargets)) {
+            return null;
+        }
+
+        var processingPattern = patternDetails.getDefinition().get(AEComponents.ENCODED_PROCESSING_PATTERN);
+        if (processingPattern == null) {
+            return null;
+        }
+
+        var sparseInputs = new ArrayList<>(processingPattern.sparseInputs());
+        var targets = new ArrayList<Optional<EncodedResonatingPattern.Target>>(sparseInputs.size());
+        for (int index = 0; index < sparseInputs.size(); index++) {
+            targets.add(index < defaultInputTargets.size() ? defaultInputTargets.get(index) : Optional.empty());
+        }
+        return new RoutedPatternData(sparseInputs, targets);
     }
 
     @Override
@@ -689,6 +735,13 @@ public class ResonatingPatternProviderLogic extends PatternProviderLogic impleme
             boolean has = hasWorkToDo() || hasResonatingWorkToDo() || isEnablePull();
 
             return has ? (could ? TickRateModulation.URGENT : TickRateModulation.SLOWER) : TickRateModulation.SLEEP;
+        }
+    }
+
+    private record RoutedPatternData(List<GenericStack> sparseInputs, List<Optional<EncodedResonatingPattern.Target>> inputTargets) {
+
+        private Optional<EncodedResonatingPattern.Target> getTargetForSparseInputIndex(int index) {
+            return index < inputTargets.size() ? inputTargets.get(index) : Optional.empty();
         }
     }
 
