@@ -25,6 +25,7 @@ item_ids:
   - ae2cs:quantum_crystal_seed
   - ae2cs:rose_quartz_seed
   - ae2cs:irradiated_seed
+  - ae2cs:overload_crystal_seed
   - ae2cs:nether_quartz_dust
   - ae2cs:resonating_crystal_dust
   - ae2cs:redstone_crystal_dust
@@ -94,6 +95,13 @@ item_ids:
 </Row>
 
 当引入 **<ItemLink id="ae2cs:crystal_aggregator" />** 后，可以使用相同数量的粉尘聚合出更多水晶种子，提升整体产量。
+
+安装闪电科技后，可以在晶能聚合器中使用 16 个过载水晶粉、8 个福鲁伊克斯粉和 8 个充能赛特斯石英，产出 32 个 **<ItemLink id="ae2cs:overload_crystal_seed" />**。闪电模拟室只需消耗上述材料的一半，同样产出 32 个种子。
+
+<Row gap="16">
+<Recipe id="ae2cs:aggregator/overload_crystal_seed" />
+<Recipe id="ae2cs:lightning_simulation/overload_crystal_seed" />
+</Row>
 
 ---
 

@@ -96,7 +96,7 @@
   "item.ae2cs.blank_print_press": "無刻印の金型",
   "item.ae2cs.ender_blank_print_press": "エンダー無刻印の金型",
   "item.ae2cs.crystal_growth_card": "水晶成長カード",
-  "item.ae2cs.overload_card": "流星オーバーロードカード",
+  "item.ae2cs.overload_card": "隕石オーバークロックカード",
   "item.ae2cs.ender_linker": "エンダーリンカー",
   "item.ae2cs.resonating_linker": "共振バインダー",
   "item.ae2cs.mirror_linker": "ミラーバインダー",
@@ -440,6 +440,7 @@
 "key.categories.ae2cs": "AE2 水晶科学",
 "key.ae2cs.toggle_resonant_template_coding_slot_mode": "共振パターンエンコード端末のスロットモード切替"
 ,
+  "ae2cs.tooltip.click_to_view_recipes": "クリックしてレシピを表示",
   "ae2cs.item.resonating_linker.provider": "紐付け先サプライヤー: (%s, %s, %s)",
   "ae2cs.item.resonating_linker.provider.unbound": "紐付け先サプライヤー: なし",
   "ae2cs.msg.resonating_linker.bound_provider": "共鳴パターンサプライヤーを紐付けました",

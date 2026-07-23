@@ -1,0 +1,40 @@
+package io.github.lounode.ae2cs.integration;
+
+import io.github.lounode.ae2cs.integration.emi.CircuitEtcherRecipeCategory;
+import io.github.lounode.ae2cs.integration.emi.CrystalAggregatorRecipeCategory;
+import io.github.lounode.ae2cs.integration.emi.CrystalPulverizerRecipeCategory;
+import io.github.lounode.ae2cs.integration.jei.JeiPlugin;
+
+import appeng.integration.modules.emi.EmiEntropyRecipe;
+
+import net.neoforged.fml.ModList;
+
+import dev.emi.emi.api.EmiApi;
+
+public final class RecipeViewerNavigation {
+
+    private RecipeViewerNavigation() {}
+
+    public static void show(MachineCategory category) {
+        if (ModList.get().isLoaded("emi")) {
+            switch (category) {
+                case CIRCUIT_ETCHER -> EmiApi.displayRecipeCategory(CircuitEtcherRecipeCategory.RECIPE_TYPE);
+                case CRYSTAL_AGGREGATOR -> EmiApi.displayRecipeCategory(CrystalAggregatorRecipeCategory.RECIPE_TYPE);
+                case CRYSTAL_PULVERIZER -> EmiApi.displayRecipeCategory(CrystalPulverizerRecipeCategory.RECIPE_TYPE);
+                case ENTROPY_REACTION -> EmiApi.displayRecipeCategory(EmiEntropyRecipe.CATEGORY);
+            }
+            return;
+        }
+
+        if (ModList.get().isLoaded("jei")) {
+            JeiPlugin.showRecipes(category);
+        }
+    }
+
+    public enum MachineCategory {
+        CIRCUIT_ETCHER,
+        CRYSTAL_AGGREGATOR,
+        CRYSTAL_PULVERIZER,
+        ENTROPY_REACTION
+    }
+}

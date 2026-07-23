@@ -7,6 +7,8 @@ import io.github.lounode.ae2cs.client.gui.widgets.AdvancedProgressBar;
 import io.github.lounode.ae2cs.common.location.SimpleComponents;
 import io.github.lounode.ae2cs.common.menu.EntropyVariationReactionChamberMenu;
 
+import io.github.lounode.ae2cs.integration.RecipeViewerNavigation;
+
 import appeng.client.gui.implementations.UpgradeableScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.menu.interfaces.IProgressProvider;
@@ -55,6 +57,7 @@ public class EntropyVariationReactionChamberGUI extends UpgradeableScreen<Entrop
                 return getMenu().recipeNeedTicks;
             }
         }, style.getImage("workingProgressBar"), AdvancedProgressBar.FillMode.LEFT_TO_RIGHT, SimpleComponents.WORKING_PROGRESS_BAR);
+        this.workingProgressBar.onClick(() -> RecipeViewerNavigation.show(RecipeViewerNavigation.MachineCategory.ENTROPY_REACTION));
         widgets.add("workingProgressBar", this.workingProgressBar);
 
         entropyModeButton = new AECSServerSettingToggleButton<>(AECSSettings.ENTROPY_CHANGE_MODE, EntropyMode.HEAT);

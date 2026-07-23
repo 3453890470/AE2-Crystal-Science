@@ -5,6 +5,7 @@ import io.github.lounode.ae2cs.api.settings.AECSSettings;
 import io.github.lounode.ae2cs.api.submenu.CustomReturnableSubMenuHost;
 import io.github.lounode.ae2cs.common.init.AECSBlockProperties;
 import io.github.lounode.ae2cs.common.init.AECSBlocks;
+import io.github.lounode.ae2cs.common.init.AECSItems;
 import io.github.lounode.ae2cs.common.machine.component.GenericStackInvComponent;
 import io.github.lounode.ae2cs.common.machine.component.InvPort;
 import io.github.lounode.ae2cs.common.machine.component.SideConfigComponent;
@@ -69,13 +70,16 @@ public class EntropyVariationReactionChamberBlockEntity extends AENetworkedSelfP
      * 升级仓
      */
     private final IUpgradeInventory upgrades = UpgradeInventories.forMachine(AECSBlocks.ENTROPY_VARIATION_REACTION_CHAMBER_BLOCK,
-            4, this::saveChanges);
+            4, this::onUpgradesChanged);
 
     private final IConfigManager configManager;
 
     /**
      * 当前执行的配方
      */
+    private int speedMultiplier = 1;
+    private int overclockCards = 0;
+
     @Nullable
     private RecipeHolder<EntropyRecipe> activeRecipe;
 
@@ -174,6 +178,14 @@ public class EntropyVariationReactionChamberBlockEntity extends AENetworkedSelfP
         return upgrades;
     }
 
+    private void onUpgradesChanged() {
+        this.overclockCards = Math.min(2, upgrades.getInstalledUpgrades(AECSItems.OVERLOAD_CARD));
+        this.speedMultiplier = overclockCards > 0
+                ? 1
+                : 1 << Math.min(4, upgrades.getInstalledUpgrades(AEItems.SPEED_CARD));
+        saveChanges();
+    }
+
     @Override
     public void serverTick() {
         super.serverTick();
@@ -244,13 +256,14 @@ public class EntropyVariationReactionChamberBlockEntity extends AENetworkedSelfP
     }
 
     // 计算能量消耗
-    private int getSpeedMultiplier() {
-        int c = Math.min(4, upgrades.getInstalledUpgrades(AEItems.SPEED_CARD));
-        return 1 << c;
-    }
-
     private double getEnergyPerTick() {
-        return BASIC_ENERGY_COST_PER_TICK * getSpeedMultiplier();
+        double normalEnergy = BASIC_ENERGY_COST_PER_TICK * speedMultiplier;
+        if (overclockCards == 0 || activeRecipeEnergyCost <= 0) {
+            return normalEnergy;
+        }
+
+        int targetTicks = overclockCards == 1 ? 4 : 1;
+        return Math.max(normalEnergy, Math.ceil((double) activeRecipeEnergyCost / targetTicks));
     }
 
     /**
@@ -355,6 +368,7 @@ public class EntropyVariationReactionChamberBlockEntity extends AENetworkedSelfP
     @Override
     public void onLoad() {
         super.onLoad();
+        onUpgradesChanged();
         if (activeRecipeId != null && level != null) {
             Optional<RecipeHolder<?>> opt = level.getRecipeManager().byKey(activeRecipeId);
             opt.ifPresent(recipeHolder -> activeRecipe = (RecipeHolder<EntropyRecipe>) recipeHolder);

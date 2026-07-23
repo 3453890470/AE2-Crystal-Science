@@ -339,7 +339,7 @@ public class AECSCraftRecipeProvider extends AECSRecipeProvider {
                 .define('b', AEBlocks.WIRELESS_ACCESS_POINT)
                 .define('c', AECSItems.RESONATING_PROCESSOR)
                 .define('d', ConventionTags.SMART_CABLE)
-                .define('e', AECSTags.Items.STORAGE_BLOCK_PURE_CRYSTAL_ENDER_QUARTZ)
+                .define('e', AECSBlocks.ENDER_BROADCASTER_BLOCK)
                 .unlockedBy(getHasName(AECSItems.RESONATING_PROCESSOR), has(AECSItems.RESONATING_PROCESSOR))
                 .save(recipeOutput, getCrafterPath(AECSBlocks.ENDER_EMITTER_BLOCK, true));
 

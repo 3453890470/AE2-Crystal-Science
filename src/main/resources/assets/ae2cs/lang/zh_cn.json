@@ -23,7 +23,7 @@
   "block.ae2cs.crystal_pulverizer": "晶能粉碎机",
   "block.ae2cs.crystal_vibration_chamber": "晶能谐振仓",
   "block.ae2cs.crystal_aggregator": "晶能聚合器",
-  "block.ae2cs.entropy_variation_reaction_chamber": "熵变反应器",
+  "block.ae2cs.entropy_variation_reaction_chamber": "熵变反应室",
   "block.ae2cs.ender_broadcaster": "ME末影广播装置",
   "block.ae2cs.ender_emitter": "ME末影发信器",
   "block.ae2cs.ender_interface": "ME末影接口",
@@ -104,7 +104,7 @@
   "item.ae2cs.pattern_provider_upgrade": "样板供应器升级",
   "item.ae2cs.meteor_pattern_provider_upgrade": "自装配式样板供应器升级",
   "item.ae2cs.crystal_growth_card": "晶体催生卡",
-  "item.ae2cs.overload_card": "陨石过载卡",
+  "item.ae2cs.overload_card": "陨石超频卡",
   "item.ae2cs.ender_linker": "末影连接工具",
   "item.ae2cs.resonating_linker": "谐振绑定工具",
   "item.ae2cs.mirror_linker": "镜像绑定工具",
@@ -442,6 +442,7 @@
   "ae2cs.menu.resonant_template_coding_terminal.processing_ingredient_transfer_mode.full_split": "当前：材料全分裂",
   "ae2cs.menu.resonant_template_coding_terminal.processing_ingredient_transfer_mode.full_split_desc": "按 JEI/EMI 显示顺序排列材料，不合并重复材料",
   "ae2cs.menu.resonant_template_coding_terminal.hotkey_unbound": "未设置",
+  "ae2cs.tooltip.click_to_view_recipes": "点击查看配方",
   "key.categories.ae2cs": "AE2 水晶科技",
   "key.ae2cs.toggle_resonant_template_coding_slot_mode": "切换谐振样板编码终端槽模式"
 }

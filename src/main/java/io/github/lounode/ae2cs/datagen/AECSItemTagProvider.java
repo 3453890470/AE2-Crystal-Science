@@ -163,6 +163,8 @@ public class AECSItemTagProvider extends ItemTagsProvider {
                 .addTag(AECSTags.Items.PURE_METEOR_CRYSTAL);
         tag(AECSTags.Items.GEM_RESONATING)
                 .addTag(AECSTags.Items.PURE_RESONATING_CRYSTAL);
+        tag(AECSTags.Items.GEM_DATA_CRYSTAL)
+                .addTag(AECSTags.Items.PURE_DATA_CRYSTAL);
         tag(EAETags.ENTRO_CRYSTAL)
                 .addTag(AECSTags.Items.PURE_ENTRO_CRYSTAL);
 

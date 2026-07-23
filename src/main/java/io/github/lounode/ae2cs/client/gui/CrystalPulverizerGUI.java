@@ -5,6 +5,8 @@ import io.github.lounode.ae2cs.client.gui.widgets.AdvancedProgressBar;
 import io.github.lounode.ae2cs.common.location.SimpleComponents;
 import io.github.lounode.ae2cs.common.menu.CrystalPulverizerMenu;
 
+import io.github.lounode.ae2cs.integration.RecipeViewerNavigation;
+
 import appeng.client.gui.implementations.UpgradeableScreen;
 import appeng.client.gui.style.StyleManager;
 import appeng.menu.interfaces.IProgressProvider;
@@ -49,6 +51,7 @@ public class CrystalPulverizerGUI extends UpgradeableScreen<CrystalPulverizerMen
                 return getMenu().recipeNeedTicks;
             }
         }, style.getImage("workingProgressBar"), AdvancedProgressBar.FillMode.LEFT_TO_RIGHT, SimpleComponents.WORKING_PROGRESS_BAR);
+        this.workingProgressBar.onClick(() -> RecipeViewerNavigation.show(RecipeViewerNavigation.MachineCategory.CRYSTAL_PULVERIZER));
         widgets.add("workingProgressBar", this.workingProgressBar);
 
         addToLeftToolbar(SideConfigGUI.iconButton());
