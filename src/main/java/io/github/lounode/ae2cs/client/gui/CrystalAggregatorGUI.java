@@ -4,7 +4,6 @@ import io.github.lounode.ae2cs.client.gui.subGUI.SideConfigGUI;
 import io.github.lounode.ae2cs.client.gui.widgets.AdvancedProgressBar;
 import io.github.lounode.ae2cs.common.location.SimpleComponents;
 import io.github.lounode.ae2cs.common.menu.CrystalAggregatorMenu;
-
 import io.github.lounode.ae2cs.integration.RecipeViewerNavigation;
 
 import appeng.client.gui.implementations.UpgradeableScreen;

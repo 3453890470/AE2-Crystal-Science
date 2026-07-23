@@ -170,9 +170,7 @@ public class CrystalGrowthChamberBlockEntity extends AENetworkedSelfPoweredBlock
 
     private void onUpgradesChanged() {
         this.overclockCards = Math.min(2, upgrades.getInstalledUpgrades(AECSItems.OVERLOAD_CARD));
-        this.speedCards = overclockCards > 0
-                ? 0
-                : upgrades.getInstalledUpgrades(AEItems.SPEED_CARD);
+        this.speedCards = overclockCards > 0 ? 0 : upgrades.getInstalledUpgrades(AEItems.SPEED_CARD);
         this.workTickCountDown = Math.min(workTickCountDown, getWorkInterval());
         setChanged();
     }

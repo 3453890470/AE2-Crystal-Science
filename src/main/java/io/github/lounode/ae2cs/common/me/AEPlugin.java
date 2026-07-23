@@ -16,9 +16,6 @@ import appeng.core.definitions.AEParts;
 import appeng.core.localization.GuiText;
 import appeng.items.tools.powered.WirelessTerminalItem;
 
-import de.mari_023.ae2wtlib.api.gui.Icon;
-import de.mari_023.ae2wtlib.api.registration.AddTerminalEvent;
-
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.EventPriority;
@@ -27,6 +24,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.TagsUpdatedEvent;
+
+import de.mari_023.ae2wtlib.api.gui.Icon;
+import de.mari_023.ae2wtlib.api.registration.AddTerminalEvent;
 
 @EventBusSubscriber(modid = AECSConstants.MODID)
 public class AEPlugin {

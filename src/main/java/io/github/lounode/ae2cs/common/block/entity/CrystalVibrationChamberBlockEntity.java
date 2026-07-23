@@ -14,8 +14,8 @@ import io.github.lounode.ae2cs.common.machine.component.SideConfigComponent;
 import appeng.api.behaviors.GenericInternalInventory;
 import appeng.api.config.AccessRestriction;
 import appeng.api.config.Actionable;
-import appeng.api.stacks.GenericStack;
 import appeng.api.networking.IGrid;
+import appeng.api.stacks.GenericStack;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.UpgradeInventories;
@@ -140,9 +140,7 @@ public class CrystalVibrationChamberBlockEntity extends AENetworkedSelfPoweredBl
 
     protected void onUpgradesChange() {
         this.overclockCards = Math.min(2, upgrades.getInstalledUpgrades(AECSItems.OVERLOAD_CARD));
-        this.speedCards = overclockCards > 0
-                ? 0
-                : upgrades.getInstalledUpgrades(AEItems.SPEED_CARD);
+        this.speedCards = overclockCards > 0 ? 0 : upgrades.getInstalledUpgrades(AEItems.SPEED_CARD);
         saveChanges();
     }
 
@@ -175,8 +173,7 @@ public class CrystalVibrationChamberBlockEntity extends AENetworkedSelfPoweredBl
             int burnTimeCost = Math.min(remainingBurnTime, getBurnTimeCost());
             remainingBurnTime -= burnTimeCost;
 
-            double generatedPower = getSpeedupEnergyPerTick()
-                    * burnTimeCost / getSpeedupBurnTimeCost();
+            double generatedPower = getSpeedupEnergyPerTick() * burnTimeCost / getSpeedupBurnTimeCost();
             outputGeneratedPower(generatedPower);
 
             if (remainingBurnTime <= 0)

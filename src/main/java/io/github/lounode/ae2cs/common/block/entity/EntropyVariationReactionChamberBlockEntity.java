@@ -180,9 +180,7 @@ public class EntropyVariationReactionChamberBlockEntity extends AENetworkedSelfP
 
     private void onUpgradesChanged() {
         this.overclockCards = Math.min(2, upgrades.getInstalledUpgrades(AECSItems.OVERLOAD_CARD));
-        this.speedMultiplier = overclockCards > 0
-                ? 1
-                : 1 << Math.min(4, upgrades.getInstalledUpgrades(AEItems.SPEED_CARD));
+        this.speedMultiplier = overclockCards > 0 ? 1 : 1 << Math.min(4, upgrades.getInstalledUpgrades(AEItems.SPEED_CARD));
         saveChanges();
     }
 

@@ -36,10 +36,6 @@ import appeng.menu.slot.FakeSlot;
 import appeng.parts.encoding.EncodingMode;
 import appeng.util.ReadableNumberConverter;
 
-import de.mari_023.ae2wtlib.api.gui.ScrollingUpgradesPanel;
-import de.mari_023.ae2wtlib.api.terminal.IUniversalTerminalCapable;
-import de.mari_023.ae2wtlib.api.terminal.WTMenuHost;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -66,6 +62,9 @@ import net.minecraft.world.level.Level;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
+import de.mari_023.ae2wtlib.api.gui.ScrollingUpgradesPanel;
+import de.mari_023.ae2wtlib.api.terminal.IUniversalTerminalCapable;
+import de.mari_023.ae2wtlib.api.terminal.WTMenuHost;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -82,7 +81,7 @@ import java.util.function.Consumer;
  * 布局坐标来自 assets/ae2/screens/resonant_template_coding_terminal.json。
  */
 public class ResonantTemplateCodingTermScreen extends PatternEncodingTermScreen<ResonantTemplateCodingTermMenu>
-        implements IUniversalTerminalCapable {
+                                              implements IUniversalTerminalCapable {
 
     private static final int PROCESSING_INPUT_COLUMNS = 4;
     private static final int VISIBLE_PROCESSING_INPUT_ROWS = 4;
@@ -151,9 +150,7 @@ public class ResonantTemplateCodingTermScreen extends PatternEncodingTermScreen<
         if (menu.isWUT()) {
             this.addToLeftToolbar(this.cycleTerminalButton());
         }
-        this.upgradesPanel = menu.isWirelessTerminal()
-                ? this.addUpgradePanel(this.widgets, menu)
-                : null;
+        this.upgradesPanel = menu.isWirelessTerminal() ? this.addUpgradePanel(this.widgets, menu) : null;
         if (menu.pullProcessingRecipeInputs && menu.pulledAnvilMode) {
             this.pulledDisplayMode = PulledDisplayMode.ANVIL;
         }
@@ -345,9 +342,7 @@ public class ResonantTemplateCodingTermScreen extends PatternEncodingTermScreen<
             return;
         }
 
-        int displayedCount = this.menu.usesNetworkBlankPatternProxy()
-                ? getNetworkBlankPatternCount()
-                : this.menu.blankPatternSlotCount;
+        int displayedCount = this.menu.usesNetworkBlankPatternProxy() ? getNetworkBlankPatternCount() : this.menu.blankPatternSlotCount;
         if (displayedCount <= 0) {
             return;
         }

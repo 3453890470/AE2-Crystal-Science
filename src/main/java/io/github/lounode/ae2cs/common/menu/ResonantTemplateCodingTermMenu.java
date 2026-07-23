@@ -34,10 +34,6 @@ import appeng.util.ConfigInventory;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.PlayerInternalInventory;
 
-import de.mari_023.ae2wtlib.api.gui.AE2wtlibSlotSemantics;
-import de.mari_023.ae2wtlib.api.terminal.ItemWUT;
-import de.mari_023.ae2wtlib.api.terminal.WTMenuHost;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -63,6 +59,10 @@ import net.minecraft.world.item.crafting.SmithingRecipeInput;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.Level;
 import net.neoforged.fml.ModList;
+
+import de.mari_023.ae2wtlib.api.gui.AE2wtlibSlotSemantics;
+import de.mari_023.ae2wtlib.api.terminal.ItemWUT;
+import de.mari_023.ae2wtlib.api.terminal.WTMenuHost;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -283,8 +283,7 @@ public class ResonantTemplateCodingTermMenu extends PatternEncodingTermMenu impl
     }
 
     public boolean isWUT() {
-        return this.wirelessHost != null
-                && this.wirelessHost.getItemStack().getItem() instanceof ItemWUT;
+        return this.wirelessHost != null && this.wirelessHost.getItemStack().getItem() instanceof ItemWUT;
     }
 
     public void setEncodeResonatingPattern(boolean encodeResonatingPattern) {
@@ -367,8 +366,7 @@ public class ResonantTemplateCodingTermMenu extends PatternEncodingTermMenu impl
 
     private void expandProcessingSlots() {
         PatternEncodingLogic logic = getEncodingLogic();
-        if (logic.getEncodedInputInv().size() != ResonantPatternEncodingCapacity.PROCESSING_INPUT_SLOTS
-                || logic.getEncodedOutputInv().size() != ResonantPatternEncodingCapacity.PROCESSING_OUTPUT_SLOTS) {
+        if (logic.getEncodedInputInv().size() != ResonantPatternEncodingCapacity.PROCESSING_INPUT_SLOTS || logic.getEncodedOutputInv().size() != ResonantPatternEncodingCapacity.PROCESSING_OUTPUT_SLOTS) {
             throw new IllegalStateException("Resonant pattern encoding logic was not expanded before menu creation");
         }
 

@@ -6,18 +6,13 @@ import io.github.lounode.ae2cs.common.init.AECSBlocks;
 import io.github.lounode.ae2cs.common.init.AECSItems;
 import io.github.lounode.ae2cs.common.init.AECSMenus;
 import io.github.lounode.ae2cs.common.init.AECSRecipeTypes;
+import io.github.lounode.ae2cs.common.menu.CircuitEtcherMenu;
+import io.github.lounode.ae2cs.common.menu.CrystalAggregatorMenu;
+import io.github.lounode.ae2cs.common.menu.CrystalPulverizerMenu;
+import io.github.lounode.ae2cs.common.menu.EntropyVariationReactionChamberMenu;
 import io.github.lounode.ae2cs.common.recipe.circuit_etcher.CircuitEtcherRecipe;
 import io.github.lounode.ae2cs.common.recipe.crystal_aggregator.CrystalAggregatorRecipe;
 import io.github.lounode.ae2cs.common.recipe.crystal_pulverizer.CrystalPulverizerRecipe;
-
-import io.github.lounode.ae2cs.common.menu.CircuitEtcherMenu;
-
-import io.github.lounode.ae2cs.common.menu.CrystalAggregatorMenu;
-
-import io.github.lounode.ae2cs.common.menu.CrystalPulverizerMenu;
-
-import io.github.lounode.ae2cs.common.menu.EntropyVariationReactionChamberMenu;
-
 import io.github.lounode.ae2cs.integration.RecipeViewerNavigation;
 
 import net.minecraft.client.Minecraft;
@@ -143,9 +138,7 @@ public class JeiPlugin implements IModPlugin {
             case CIRCUIT_ETCHER -> CircuitEtcherRecipeCategory.RECIPE_TYPE;
             case CRYSTAL_AGGREGATOR -> CrystalAggregatorRecipeCategory.RECIPE_TYPE;
             case CRYSTAL_PULVERIZER -> CrystalPulverizerRecipeCategory.RECIPE_TYPE;
-            case ENTROPY_REACTION -> ModList.get().isLoaded(AECSConstants.JEI_AE_INTEGRATION_ID)
-                    ? EntropyManipulatorCategory.RECIPE_TYPE
-                    : null;
+            case ENTROPY_REACTION -> ModList.get().isLoaded(AECSConstants.JEI_AE_INTEGRATION_ID) ? EntropyManipulatorCategory.RECIPE_TYPE : null;
         };
         if (recipeType != null) {
             runtime.getRecipesGui().showTypes(List.of(recipeType));

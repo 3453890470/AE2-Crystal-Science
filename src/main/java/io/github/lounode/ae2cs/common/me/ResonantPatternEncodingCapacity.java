@@ -22,8 +22,7 @@ public final class ResonantPatternEncodingCapacity {
     private ResonantPatternEncodingCapacity() {}
 
     public static void expand(PatternEncodingLogic logic) {
-        if (logic.getEncodedInputInv().size() == PROCESSING_INPUT_SLOTS
-                && logic.getEncodedOutputInv().size() == PROCESSING_OUTPUT_SLOTS) {
+        if (logic.getEncodedInputInv().size() == PROCESSING_INPUT_SLOTS && logic.getEncodedOutputInv().size() == PROCESSING_OUTPUT_SLOTS) {
             return;
         }
 

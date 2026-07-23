@@ -145,8 +145,7 @@ public class AECSItems {
     public static final DeferredItem<ResonatingPatternConverterItem> RESONATING_PATTERN_CONVERTER = registerOtherItem(AECSItemIds.RESONATING_PATTERN_CONVERTER, () -> new ResonatingPatternConverterItem(defaultBuilder().stacksTo(1)));
     // AE2WTLib consumes terminal definitions from its ITEM RegisterEvent listener. This item must
     // therefore be registered at a higher priority than AE2WTLib's listener instead of through DeferredRegister.
-    public static final DeferredItem<WirelessResonantTerminalItem> WIRELESS_RESONANT_TERMINAL =
-            trackEarlyOtherItem(AECSItemIds.WIRELESS_RESONANT_TERMINAL);
+    public static final DeferredItem<WirelessResonantTerminalItem> WIRELESS_RESONANT_TERMINAL = trackEarlyOtherItem(AECSItemIds.WIRELESS_RESONANT_TERMINAL);
 
     public static final DeferredItem<EnderSwordItem> ENDER_CRYSTAL_SWORD = registerToolsItem(AECSItemIds.ENDER_CRYSTAL_SWORD, () -> new EnderSwordItem(defaultBuilder().stacksTo(1)));
     public static final DeferredItem<EnderAxeItem> ENDER_CRYSTAL_AXE = registerToolsItem(AECSItemIds.ENDER_CRYSTAL_AXE, () -> new EnderAxeItem(defaultBuilder().stacksTo(1)));

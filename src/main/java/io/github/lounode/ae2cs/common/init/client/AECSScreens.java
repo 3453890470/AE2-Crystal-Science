@@ -82,8 +82,6 @@ public class AECSScreens {
 
         event.<ResonantTemplateCodingTermMenu, ResonantTemplateCodingTermScreen>register(AECSMenus.RESONANT_TEMPLATE_CODING_TERM_MENU.get(),
                 (menu, inv, title) -> new ResonantTemplateCodingTermScreen(menu, inv, title,
-                        StyleManager.loadStyleDoc(menu.isWirelessTerminal()
-                                ? "/screens/resonant_template_coding_terminal_wireless.json"
-                                : "/screens/resonant_template_coding_terminal.json")));
+                        StyleManager.loadStyleDoc(menu.isWirelessTerminal() ? "/screens/resonant_template_coding_terminal_wireless.json" : "/screens/resonant_template_coding_terminal.json")));
     }
 }
