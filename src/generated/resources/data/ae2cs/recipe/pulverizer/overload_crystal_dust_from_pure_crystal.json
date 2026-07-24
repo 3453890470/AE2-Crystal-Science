@@ -2,17 +2,17 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "neoecoae"
+      "modid": "ae2lt"
     }
   ],
   "type": "ae2cs:crystal_pulverizer_recipe_serializer",
   "energy_cost": 8000,
   "input": {
     "count": 1,
-    "item": "ae2cs:purified_energized_certus_quartz_crystal"
+    "item": "ae2cs:purified_overload_crystal"
   },
   "result": {
     "count": 1,
-    "id": "neoecoae:energized_crystal"
+    "id": "ae2lt:overload_crystal_dust"
   }
 }

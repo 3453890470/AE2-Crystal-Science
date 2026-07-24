@@ -2,16 +2,16 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "data_energistics"
+      "modid": "ae2lt"
     }
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_data_dust": {
+    "has_blank_print_press": {
       "conditions": {
         "items": [
           {
-            "items": "data_energistics:data_dust"
+            "items": "ae2cs:blank_print_press"
           }
         ]
       },
@@ -19,7 +19,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ae2cs:craft/shapeless/data_crystal_seed"
+        "recipe": "ae2cs:stonecutting/overload_inscriber_press_from_blank_print_press_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -27,12 +27,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_data_dust"
+      "has_blank_print_press"
     ]
   ],
   "rewards": {
     "recipes": [
-      "ae2cs:craft/shapeless/data_crystal_seed"
+      "ae2cs:stonecutting/overload_inscriber_press_from_blank_print_press_stonecutting"
     ]
   }
 }

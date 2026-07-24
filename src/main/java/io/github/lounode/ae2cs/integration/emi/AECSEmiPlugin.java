@@ -21,6 +21,14 @@ public class AECSEmiPlugin implements EmiPlugin {
     public void register(EmiRegistry registry) {
         registry.addRecipeHandler(AECSMenus.RESONANT_TEMPLATE_CODING_TERM_MENU.get(),
                 new ResonantEmiEncodePatternHandler());
+        registry.addRecipeHandler(AECSMenus.CIRCUIT_ETCHER_MENU.get(),
+                new MachineEmiRecipeHandler<>(CircuitEtcherRecipeCategory.RECIPE_TYPE));
+        registry.addRecipeHandler(AECSMenus.CRYSTAL_AGGREGATOR_MENU.get(),
+                new MachineEmiRecipeHandler<>(CrystalAggregatorRecipeCategory.RECIPE_TYPE));
+        registry.addRecipeHandler(AECSMenus.CRYSTAL_PULVERIZER_MENU.get(),
+                new MachineEmiRecipeHandler<>(CrystalPulverizerRecipeCategory.RECIPE_TYPE));
+        registry.addRecipeHandler(AECSMenus.ENTROPY_VARIATION_REACTION_CHAMBER_MENU.get(),
+                new MachineEmiRecipeHandler<>(EmiEntropyRecipe.CATEGORY));
 
         registry.addWorkstation(EmiEntropyRecipe.CATEGORY, EmiStack.of(AECSBlocks.ENTROPY_VARIATION_REACTION_CHAMBER_BLOCK));
 

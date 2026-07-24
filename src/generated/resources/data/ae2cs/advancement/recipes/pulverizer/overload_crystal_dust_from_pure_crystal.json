@@ -2,16 +2,19 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "neoecoae"
+      "modid": "ae2lt"
     }
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_energized_crystal": {
+    "has_input_0": {
       "conditions": {
         "items": [
           {
-            "items": "neoecoae:energized_crystal"
+            "count": {
+              "min": 1
+            },
+            "items": "ae2cs:purified_overload_crystal"
           }
         ]
       },
@@ -19,7 +22,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ae2cs:craft/shapeless/energized_certus_quartz_seed"
+        "recipe": "ae2cs:pulverizer/overload_crystal_dust_from_pure_crystal"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -27,12 +30,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_energized_crystal"
+      "has_input_0"
     ]
   ],
   "rewards": {
     "recipes": [
-      "ae2cs:craft/shapeless/energized_certus_quartz_seed"
+      "ae2cs:pulverizer/overload_crystal_dust_from_pure_crystal"
     ]
   }
 }

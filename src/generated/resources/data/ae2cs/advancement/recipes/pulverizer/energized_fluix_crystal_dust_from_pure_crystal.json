@@ -7,11 +7,14 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_energized_fluix_crystal": {
+    "has_input_0": {
       "conditions": {
         "items": [
           {
-            "items": "neoecoae:energized_fluix_crystal"
+            "count": {
+              "min": 1
+            },
+            "items": "ae2cs:purified_energized_fluix_crystal"
           }
         ]
       },
@@ -19,7 +22,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ae2cs:craft/shapeless/energized_fluix_crystal_seed"
+        "recipe": "ae2cs:pulverizer/energized_fluix_crystal_dust_from_pure_crystal"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -27,12 +30,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_energized_fluix_crystal"
+      "has_input_0"
     ]
   ],
   "rewards": {
     "recipes": [
-      "ae2cs:craft/shapeless/energized_fluix_crystal_seed"
+      "ae2cs:pulverizer/energized_fluix_crystal_dust_from_pure_crystal"
     ]
   }
 }

@@ -72,6 +72,7 @@ public class AECSTags {
         public static final TagKey<Item> GEM_RESONATING = tag("gems/resonating");
         public static final TagKey<Item> GEM_SKY_STONE_CRYSTAL = tag("gems/sky_stone_crystal");
         public static final TagKey<Item> GEM_ENDER_QUARTZ = tag("gems/ender_quartz");
+        public static final TagKey<Item> GEM_DATA_CRYSTAL = tag("gems/data_crystal");
 
         public static final TagKey<Item> GEARS = tag("gears");
         public static final TagKey<Item> GEARS_WOOD = tag("gears/wood");
