@@ -5,7 +5,7 @@ import io.github.lounode.ae2cs.common.init.AECSItems;
 import io.github.lounode.ae2cs.common.init.AECSMenus;
 import io.github.lounode.ae2cs.common.init.AECSRecipeTypes;
 
-import appeng.integration.modules.emi.EmiEntropyRecipe;
+import appeng.recipes.entropy.EntropyRecipe;
 
 import net.minecraft.world.level.material.Fluids;
 
@@ -30,9 +30,15 @@ public class AECSEmiPlugin implements EmiPlugin {
         registry.addRecipeHandler(AECSMenus.CRYSTAL_INFUSER_MENU.get(),
                 new MachineEmiRecipeHandler<>(CrystalInfuserRecipeCategory.RECIPE_TYPE));
         registry.addRecipeHandler(AECSMenus.ENTROPY_VARIATION_REACTION_CHAMBER_MENU.get(),
-                new MachineEmiRecipeHandler<>(EmiEntropyRecipe.CATEGORY));
+                new MachineEmiRecipeHandler<>(EntropyVariationReactionChamberRecipeCategory.RECIPE_TYPE));
 
-        registry.addWorkstation(EmiEntropyRecipe.CATEGORY, EmiStack.of(AECSBlocks.ENTROPY_VARIATION_REACTION_CHAMBER_BLOCK));
+        registry.addCategory(EntropyVariationReactionChamberRecipeCategory.RECIPE_TYPE);
+        registry.addWorkstation(EntropyVariationReactionChamberRecipeCategory.RECIPE_TYPE,
+                EmiStack.of(AECSBlocks.ENTROPY_VARIATION_REACTION_CHAMBER_BLOCK));
+        registry.getRecipeManager().getAllRecipesFor(EntropyRecipe.TYPE)
+                .stream()
+                .map(EntropyVariationReactionChamberRecipeCategory::new)
+                .forEach(registry::addRecipe);
 
         registry.addCategory(CircuitEtcherRecipeCategory.RECIPE_TYPE);
         registry.addWorkstation(CircuitEtcherRecipeCategory.RECIPE_TYPE, EmiStack.of(AECSBlocks.CIRCUIT_ETCHER_BLOCK));
