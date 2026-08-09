@@ -2,7 +2,6 @@ dependencies {
     compileOnly(libs.jetbrains.annotations)
 
     testImplementation(libs.testframework)
-    testImplementation(forge.ae2)
     localRuntime(libs.testframework)
 
     // Misc libraries
